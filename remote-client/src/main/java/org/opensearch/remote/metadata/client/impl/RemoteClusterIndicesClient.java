@@ -209,6 +209,10 @@ public class RemoteClusterIndicesClient extends AbstractSdkClient {
         Executor executor,
         Boolean isMultiTenancyEnabled
     ) {
+        return innerGetDataObjectAsync(request);
+    }
+
+    private CompletionStage<GetDataObjectResponse> innerGetDataObjectAsync(GetDataObjectRequest request) {
         return doPrivileged(() -> {
             try {
                 GetRequest getRequest = new GetRequest.Builder().index(request.index()).id(request.id()).build();
